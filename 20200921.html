@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    
+    #content {
+      border: 1px solid #dddddd;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="content" ></canvas>
+  <!-- <img src="./pic.png" alt="" id="img"> -->
+</body>
+<script>
+    // 将图片画到canvas上面上去！
+
+  var canvas = document.getElementById('content')
+  // var img = document.getElementById('img')
+  var img = new Image()
+  img.src = './pic.png'
+  canvas.width = img.width
+  canvas.height = img.height
+  // document.getElementsByTagName('body')[0].append(img)
+  var ctx = canvas.getContext('2d')
+  // 文字
+  var hanzi = canvas.getContext("2d");
+  img.onload = function () {
+    
+    // ctx.drawImage(image, x, y, width, height);
+    ctx.drawImage(img,0,0)
+    // hanzi.rotate(100*Math.PI/180);
+    console.log(img.width,img.height,img)
+    // ctx.width = 
+    hanzi.font = "24px 宋体"
+    hanzi.fillStyle= "rgba(255,0,0,0.5)"
+    hanzi.textAlign = 'right'
+    hanzi.rotate(-25*Math.PI/180);
+    hanzi.textAlign = 'center';
+    hanzi.textBaseline = 'middle';
+    let w = canvas.width
+    let h = canvas.height
+    console.log(w,h,'..');
+    let text = "印象·大美河南"
+    // text.length*30 动态控制文字的宽度 j的初始值为canvas高度的一半
+    for(let i = (w*0.5)*-1; i<w; i+=text.length*30) {
+        for(let j = 0; j<h*1.5; j+=60) {
+          // 填充文字，x 间距, y 间距
+          hanzi.fillText(text, i, j)
+        }
+      }
+    var imgBase64 = canvas.toDataURL();
+    console.log(imgBase64)
+      let newImg = new Image()
+      newImg.src = imgBase64
+      console.log(newImg)
+     document.getElementsByTagName('body')[0].append(newImg)
+  //   var reader = new FileReader()
+  //   newimg.src = reader.result
+  //   console.log(33,reader.result)
+  //   newimg.addEventListener('load', ()=> resolve(newimg))
+  //   canvas.toBlob(blob=>{
+    
+  //     reader.readAsDataURL(blob)
+  //     console.log(blob,reader.readAsDataURL(blob))
+  // })
+  //   reader.addEventListener('load', ()=>{
+  //   })
+  };
+</script>
