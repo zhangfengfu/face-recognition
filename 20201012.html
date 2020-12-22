@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+ <style>
+    div {
+    background: 'pink'
+  }
+ </style>
+</head>
+<body>
+  <div style="font-size: 30px;">box</div>
+  <button data-item="foo" id="btn">get</button>
+  <img src="" data-item="star.png" alt="">
+  <script>
+    var btn = document.createElement('button')
+    document.querySelector('body').appendChild(btn)
+    btn.style.position = 'fixed'
+    btn.style.height = '100px'
+    btn.style.width = '200px'
+    btn.style.top = '50px'
+    btn.style.left = '100px'
+    btn.style.zIndex = '999'
+    btn.style.backgroundColor = 'pink'
+    btn.textContent = '按钮'
+
+
+
+   
+
+  </script>
+</body>
+</html>

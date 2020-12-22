@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.21.0/dist/axios.min.js"></script>
+  <style>
+    .box {
+      height: 200px;
+      width: 200px;
+     border-radius: 50%;
+     z-index: 999;
+     /* background-image: url(./fox.jpg); */
+     /* background-repeat: no-repeat; */
+     background-size: 20% 20%;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    function httpGet (url, params) {
+      axios({
+        method: 'GET',
+        url,
+        headers: {'token': 'fcc83e2cbae4439cb5bf17dcd42c38ff', 'corpId': 'ding970f77422fd6f2f335c2f4657eb6378f'},
+        baseURL: 'http://47.98.179.196:8081/',
+        params,
+      })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+    httpGet('mop/mop-auth/sys/user/queryPmsByUserId', {userId: '2135305715643996'})
+  </script>
+</body>
+</html>

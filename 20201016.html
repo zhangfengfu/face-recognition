@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+<body>
+  <div>box</div>
+  <button>go</button>
+  <progress min="0" max="100" value="0">0% complete</progress>
+
+  <script>
+
+    let btn = document.querySelector('button')
+    function go() {
+      window.history.pushState({foo: 123}, 'titile1', '2.html')
+    }
+
+    // btn.addEventListener('click', go)
+    btn.addEventListener('click', function () {
+      localStorage.setItem('test', '888')
+    })
+    window.addEventListener('popstate', function (e) {
+      console.log(e);
+    })
+
+    window.addEventListener('storage', function (e) {
+      console.log(e,'storage');
+    })
+
+    function upload(blobOrFile) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/server', true);
+  xhr.onload = function (e) {};
+
+  var progressBar = document.querySelector('progress');
+  xhr.upload.onprogress = function (e) {
+    if (e.lengthComputable) {
+      console.log(e);
+      progressBar.value = ( e.loaded/ e.total) * 100;
+      // 兼容不支持 <progress> 元素的老式浏览器
+      progressBar.textContent = progressBar.value;
+    }
+  };
+
+  xhr.send(blobOrFile);
+}
+
+upload(new Blob(['hello world'], {type: 'text/plain'}));
+    
+
+  </script>
+</body>
+</html>

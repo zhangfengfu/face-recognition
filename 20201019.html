@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>box</div>
+  <script>
+    var xhr = new XMLHttpRequest()
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          console.log(xhr.responseText,'responseText')
+
+        } else {
+          console.error(xhr.statusText,'statusText')
+        }
+      }
+    }
+    xhr.onerror = function (e) {
+      console.error(xhr.statusText, 'error---statusText')
+    }
+    xhr.open('GET', 'http://172.17.9.155/mop/mop-auth/sys/pc/findHome', true)
+    xhr.setRequestHeader('Access-Control-Allow-Origin','*')
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    xhr.send(null)
+
+  </script>
+</body>
+</html>

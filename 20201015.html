@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <p>this is target</p>
+  </div>
+  <ul>
+    <li data-item="1">1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+  <script>
+
+
+    document.querySelector('ul').addEventListener('click', function(e) {
+      console.log('e',e);
+      if (e.target.tagName.toLowerCase() == 'li') {
+        e.target.style.color = 'pink'
+        e.target.dataset.item == 1 && (e.target.style.background = 'blue')
+      }
+      
+    })
+    var phases = {
+      1: 'capture',
+      2: 'target',
+      3: 'bubble'
+    }
+    let box = document.querySelector('div')
+    let p = document.querySelector('p')
+
+    box.addEventListener('click', cb)
+    p.addEventListener('click', cb, true)
+    box.addEventListener('click', cb, false)
+    p.addEventListener('click', cb, false)
+
+    function cb (e) {
+      var tag = e.currentTarget.tagName
+      var phase = phases[e.eventPhase]
+      console.log("Tag: "+ tag + ". eventPhase: ." + phase);
+      
+    }
+
+  </script>
+</body>
+</html>

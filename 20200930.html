@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body,html {
+      height: 100%;
+      background-color: pink;
+    }
+    .sanjiao {
+      width: 0;
+      border-width: 40px;
+      border-style: solid dashed solid;
+      border-color: deeppink blue rgba(255, 0, 0, 0);
+    }
+    .circle {
+      height: 40px;
+      width: 40px;
+      background: #000;
+      border-radius: -200px;
+    }
+    .rect {
+      height: 100px;
+      width: 50px;
+      background-color:rgb(157, 255, 0);
+      /* transform: rotate(40deg); */
+    }
+  </style>
+</head>
+<body>
+  <div class="sanjiao"></div>
+  <div class="circle"></div>
+  <div class="rect"></div>
+  <canvas id="canvas"></canvas>
+  <script>
+    let canvas = document.getElementById('canvas')
+    let ctx = canvas.getContext('2d')
+    ctx.beginPath()
+    ctx.moveTo(10,10)
+    ctx.lineTo(20,10)
+    ctx.lineTo(15,15)
+    ctx.lineTo(10,10)
+    ctx.fillStyle = '#000'
+    ctx.closePath()
+    ctx.fill()
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .draggable {
+      height: 300px;
+      width: 300px;
+      border: 1px solid #ddd;
+      background-color: rgb(0, 0, 0, .3);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">box3</div>
+  <div class="boxInput" contenteditable>box11</div>
+  <button class="shopBtn">抢购</button>
+
+  <form action="" class="form">
+    <input type="text" required>
+    <button class="submit" type="submit">提交</button>
+  </form>
+
+  <script>
+    document.querySelector('.shopBtn').addEventListener('click', function (e) {
+      location.href = '20200930.html'
+    })
+
+    /* history.pushState({page: 1}, 'title 1', '?page=1')
+    history.pushState({page: 2}, 'title 2', '?page=2')
+
+    window.onpopstate = function (e) {
+      console.log('state:' + e.state);
+    } */
+    for (let i = 0; i < 10000000; i++) {
+
+    }
+    let date = Date.now()
+    console.log(date, 'start');
+    window.addEventListener('DOMContentLoaded', function (e) {
+      console.log(e, 'dom 生成');
+      console.log(Date.now(), 'dom-start', date - Date.now());
+    })
+    window.addEventListener('load', function (e) {
+      console.log(e, '加载完成 生成');
+      console.log(Date.now(), 'load-start', date - Date.now());
+    })
+
+    var p = new ProgressEvent('load', {
+      lengthComputable: true,
+      loaded: 30,
+      total: 100,
+    });
+
+    document.body.addEventListener('load', function (e) {
+      console.log('已经加载：' + (e.loaded / e.total) * 100 + '%');
+    });
+
+    document.body.dispatchEvent(p);
+  </script>
+</body>
+
+</html>

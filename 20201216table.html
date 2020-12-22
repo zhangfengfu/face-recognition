@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .line{
+      height: 1px;
+      background: red;
+
+      width: 300px;
+      transform: rotate(45);
+    }
+    .box {
+      height: 30px;
+      width: 300px;
+      background: #dddddd;
+      border-radius: 12px;
+      position: fixed;
+      right: 0;
+      top: -30px;
+      background: pink;
+      animation: mymove 3s  ;
+    }
+    .box:hover {
+      background: pink;
+      animation: mymove 3s  ;
+    }
+    @keyframes mymove {
+      from {
+        top: -30px;
+      }
+      to {
+        top: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="line"></div>
+  <div class="box">通知</div>
+</body>
+<script>
+  let arr = null
+  test(arr)
+  function test (arr) {
+    
+    if (arr && arr.length) {
+      console.log(obj.q)
+    }
+  }
+</script>
+</html>

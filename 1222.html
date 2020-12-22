@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每行N列 每列间距xpx （20px）通用写法 两边间距一定要大于等于中间列没项间距</title>
+  <style>
+    body {
+      width: 400px;
+      border: 1px solid #ff0000;
+      margin: 0 auto;
+    }
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      list-style: none;
+    }
+    .box {
+      padding: 16px 32px 16px calc(32px - 20px );
+      overflow: hidden;
+    }
+    ul>li{
+      background: pink;
+      height: 30px;
+      margin-bottom: 12px;
+      width: 100%;
+      float: left;
+      margin-left: 20px;
+      width: calc(100%/3 - 20px);
+    }
+  </style>
+</head>
+<body>
+    <ul class="box">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+    </ul>
+</body>
+</html>

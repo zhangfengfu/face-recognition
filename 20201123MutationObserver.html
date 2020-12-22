@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body >
+  
+  <input id="checkbox" type="checkbox" >
+  <input id="checkbox1" type="checkbox">
+  <button id="btn">btn</button>
+  <script>
+    let targetNode = document.getElementById('checkbox')
+    document.getElementById('btn').addEventListener('click', function () {
+      const isDisabeld = targetNode.getAttribute('disabled')
+      isDisabeld ? targetNode.removeAttribute('disabled') : targetNode.setAttribute('disabled', true)
+    })
+    
+    let observer = new MutationObserver(function (mutationsList,observer) {
+      mutationsList.forEach(mutation=>{
+        if (mutation.type == 'childList') {
+          console.log('chidlist')
+        }
+        if (mutation.type == 'attributes') {
+          console.log('attributes')
+        }
+      })
+    })
+    const config = {
+      childList: true,
+      attributes: true,
+      subtree: true
+    }
+    observer.observe(targetNode, config)
+  </script>
+</body>
+</html>

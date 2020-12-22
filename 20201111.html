@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.10.3/dingtalk.open.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <input type="file"  accept="image/*" capture="camera">
+  <button id="btn">上传</button>
+  <script>
+    function fn () {
+      dd.biz.util.uploadImageFromCamera({"compression":true}).then(res=>{
+        console.log(res,'res')
+      }).catch(err=>{
+        alert('err3')
+        alert(JSON.stringify(err),'err3')
+        // console.log(err,'err')
+      })
+    }
+
+    let btn  = document.getElementById('btn')
+    btn.addEventListener('click', function () {
+      console.log(123)
+      fn()
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>树状结构数据处理 比如部门树 权限树 递归处理</title>
+  <script src="./mock.js"></script>
+
+</head>
+
+<body>
+  <div>box</div>
+  <script>
+    let data = [{
+      children: [{
+        children: [{
+          children: [],
+          title: '测试子部门3',
+          key: '334521465'
+        }],
+        title: '测试部门2',
+        key: '334987347'
+      },{
+        children: [{
+          children: [],
+          title: '测试子部门3-1',
+          key: '334521465'
+        }],
+        title: '测试部门2-1',
+        key: '334987347'
+      }],
+      title: '测试部门1',
+      key: '666'
+    }]
+
+    
+    let list = []
+    // 处理树数据
+    function dealList(data) {
+      let result = []
+      data.map(item => {
+        let v = {
+          ...item
+        }
+        result.push(v)
+        if (Object.prototype.hasOwnProperty.call(item, 'children')) {
+          v.children = this.dealList(item.children)
+        }
+      })
+      return result
+    }
+
+    list = dealList(data)
+
+    console.log(list, 'list')
+
+
+  </script>
+</body>
+
+</html>

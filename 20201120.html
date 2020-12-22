@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">debounce</button>
+  <button id="btn1">debounce</button>
+
+  <script>
+    // 
+    function debounce (fn, wait) {
+      let timer = null
+      return function () {
+        let _this =this
+        if (timer) { clearInterval(timer)}
+       timer = setTimeout(() => {
+         fn.call(_this, arguments)
+         this.timer = null
+       }, wait);
+      }
+    }
+    
+    document.getElementById('btn').addEventListener('click', debounce(function(e){
+      console.log(e,123)
+    },2000))
+
+    // function throttle (fn, wait) {
+    //   let preTime = 0
+    //   return function () {
+    //     let nowTime = Date.now()
+    //     if (nowTime -preTime > wait) {
+    //       fn.call(this,arguments)
+    //       preTime = nowTime
+    //     } 
+    //   }
+    // }
+    function throttle (fn, wait) {
+      let timer
+      return function () {
+        const _this = this
+        if (!timer) {
+          timer = setTimeout(()=>{
+            fn.call(_this,arguments)
+            timer = null
+          }, wait)
+        }
+      }
+    }
+    document.getElementById('btn1').addEventListener('click', throttle(function(e){
+      console.log(e,'timer')
+    },2000))
+  </script>
+</body>
+</html>
