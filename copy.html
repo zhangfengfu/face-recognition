@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>复制内容到粘贴板</title>
+  <style>
+    .primary {
+      background-color: blue;
+    }
+  </style>
+</head>
+
+
+<body>
+  <button id="toggleClass">toggleClass</button>
+  <button class="eventBtn">eventBtn</button>
+  <p>this is a deomo test copy</p>
+  <textarea name="text" class="text" cols="30" rows="10"></textarea>
+  <textarea name="test" class="test" cols="30" rows="10"></textarea>
+  <button class="btn">copy</button>
+  <script>
+    const copyToClipboard = str => {
+      const el = document.createElement('textarea');
+      el.value = str;
+      el.setAttribute('readonly', true);
+      el.style.position = 'absolute';
+      el.style.left = '-99999px';
+      document.body.appendChild(el);
+      const selected = document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false;
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      if (selected) {
+        document.getSelection().removeAllRanges();
+        document.getSelection().addRange(selected);
+      }
+    };
+
+    // Example 
+     //  Lorem ipsum  copied to clipboard.
+
+    document.querySelector('.btn').addEventListener('click', function (e) {
+      let value = document.querySelector('.text').value
+      console.log(e,'value',value)
+      copyToClipboard(value);
+    })
+    document.querySelector('.eventBtn').addEventListener('click1', function () {
+      console.log('33553')
+    })
+    
+    function toggleEvent (el, eventType, params) {
+      return el.dispatchEvent(new CustomEvent(eventType, {params}))  
+    }
+    toggleEvent(document.querySelector('.eventBtn'), 'click1', '123')
+
+    document.querySelector('#toggleClass').addEventListener('click', function(e){
+      console.log(e, e.target.classList.toggle)
+      e.target.classList.toggle('primary')
+    })
+  </script>
+</body>
+
+</html>

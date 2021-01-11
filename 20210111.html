@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>file/Blob对象转换成dataURL</title>
+</head>
+<body>
+  <div class="box"></div>
+  <input type="file" class="file">
+  <button class="btn">上传</button>
+  <script>
+    let file = document.querySelector('.file')
+    let btn = document.querySelector('.btn')
+    function change (e) {
+      console.log(e,'e')
+    }
+    file.addEventListener('change', function (e) {
+      console.log(e, e.target.files)
+      readBlobAsDataURL(e.target.files[0], function (dataurl){
+        let img = new Image()
+        img.style.width = '200px'
+        img.src = dataurl
+        document.querySelector('.box').appendChild(img)
+      console.log(dataurl)
+    })
+    })
+    btn.addEventListener('click', function (e) {
+      console.log(file.files,'file')
+      // let form = new FormData()
+      // form.append('file', file.files[0])
+      readBlobAsDataURL(file.files[0], function (dataurl){
+        let img = new Image()
+        img.style.width = '200px'
+        img.src = dataurl
+        document.querySelector('.box').appendChild(img)
+      console.log(dataurl)
+    })
+    })
+    // 二进制文件 || file 转成 DataURL
+    function readBlobAsDataURL (blob, callback) {
+      let a = new FileReader()
+      a.onload = function (e) {
+        callback(e.target.result)
+      }
+      a.readAsDataURL(blob)
+    }
+   
+  </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      padding: 20px;
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    img {
+      height: 200px;
+      display: block;
+      max-width: 500px;
+    }
+    .model {
+      width: 500px;
+      max-height: 400px;
+      padding: 20px;
+      margin: 0 auto;
+      border-radius: 24px;
+      border: 1px solid #dedede;
+      background-color: grey;
+      position: fixed;
+      top: 50px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: none;
+      transition: 0.3s;
+    }
+    .model-show {
+      display: block;
+    }
+    .delIcon {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: #ff0000;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .model-content {
+      width: auto;
+    }
+    .model-content img{
+      width: 100% !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+  </div>
+  <div class="model">
+    <span class="delIcon">&times;</span>
+    <div class="model-content">
+
+    </div>
+  </div>
+  <script>
+    let box = document.querySelector('.box')
+    function createImgs(num) {
+      let imageList = []
+      var pub_img_path = 'http://www.ruanyifeng.com/images_pub/';
+
+      var pub_img_num = 355;
+      for (var i = 0; i < num; i++) {
+        var pub_img_current_no = function () {
+          return Math.floor(Math.random() * pub_img_num + 1);
+        };
+        let img = document.createElement('img')
+        img.setAttribute('data-src', pub_img_path + 'pub_' + pub_img_current_no() + '.jpg')
+        box.appendChild(img)
+      }
+    }
+    createImgs(100)
+    
+    var imgs = document.querySelectorAll('img');
+    console.log(imgs,'imgs')
+    //用来判断bound.top<=clientHeight的函数，返回一个bool值
+    function isIn(el) {
+      var bound = el.getBoundingClientRect();
+      var clientHeight = window.innerHeight;
+      return bound.top <= clientHeight;
+    }
+    //检查图片是否在可视区内，如果不在，则加载
+    function check() {
+      Array.from(imgs).forEach(function (el) {
+        if (isIn(el)) {
+          loadImg(el);
+        }
+      })
+    }
+
+    function loadImg(el) {
+      if (!el.src) {
+        var source = el.dataset.src;
+        el.src = source;
+      }
+    }
+    window.onload = window.onscroll = function () { //onscroll()在滚动条滚动的时候触发
+      check();
+    }
+    let model = document.querySelector('.model')
+    let newImg = new Image()
+    box.addEventListener('click',function (e) {
+      console.log(e.target.src)
+
+      newImg.src = e.target.src
+      model.classList.add('model-show')
+      document.querySelector('.model-content').appendChild(newImg)
+    })
+    document.querySelector('.delIcon').addEventListener('click', function () {
+      model.classList.remove('model-show')
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常用数组方法总结</title>
+</head>
+
+<body>
+  <script>
+    let arr = []
+    for (let index = 0; index < 10; index++) {
+      let num = Math.floor(Math.random() * 10)
+      arr.push({
+        userName: 'r' + num,
+        id: num
+      })
+    }
+    /* 向尾部增加 返回数组的长度 */
+    let listPush = arr.push({
+      userName: 'r11',
+      id: 11
+    })
+    console.log(arr, listPush)
+    /* 删除最后一个  返回删除的元素 */
+    let listPop = arr.pop()
+    console.log(arr, listPop)
+
+    /* 向头部添加一个元素 返回数组的长度 */
+    let listUnshift = arr.unshift({
+      userName: '-r11',
+      id: -11
+    })
+    console.log(listUnshift, arr)
+    /* 删除头部元素 返回删除的数组 */
+    let listShift = arr.shift()
+    console.log(arr, listShift)
+
+    /* map 遍历数组 不改变原来的数组 */
+    let listMapIds = arr.map(v=>v.id)
+    console.log(arr, listMapIds)
+    
+    /* forEach 遍历数组 不改变原来的数组 没有返回值 */
+    let listForEachIds = arr.forEach(v=>v.id > 0)
+    console.log(arr, listForEachIds)
+
+    /* filter 过滤数组 不改变原来的数组 返回符合条件的项目 数组 */
+    let listFilter = arr.filter(v=>v.id> 5)
+    console.log(arr, listFilter)
+    /* some  遍历数组 如果其中一个满足条件 就返回true 否侧返回false 不改变原来的数组*/
+    let listSome = arr.some(v=>v.id>8)
+    console.log(arr, listSome)
+    /* find 遍历数组 并返回满足条件的项目 不改变原来的数组 */
+    let listFind = arr.find(v=>v.id > 2)
+    console.log(arr, listFind)
+
+    /* findeIndex 遍历数组 返回满足条件的项目的索引，否则返回-1 不改变原来的数组 */
+    let listFindIndex = arr.findIndex(v=>v.id > 3)
+    console.log(arr, listFindIndex)
+
+    /* concat 合并数组 不改变原来的数组 */
+    let concatList = [{id: -2, userName: 'r-2'}]
+    let listConcat = arr.concat(concatList,concatList)
+    console.log(arr, listConcat)
+
+    /* reduce */
+    let listReduce = arr.map(v=>v.id).reduce((totle, next)=>{
+      return totle + next
+    },10)
+    console.log(arr, listReduce, 'reduce')
+    /* slice 截取数组 不改变原来的数组 */
+    let listSlice = arr.slice(1,2)
+    console.log(arr, listSlice)
+    /* join 将数组用 给定的链接符 连接成字符串 */
+    let listJoin = arr.map(v=>v.id).join('---')
+    console.log(arr, listJoin)
+    /* reverse 将数组反转  改变原来的数组*/
+    let listReverse = arr.reverse()
+    console.log(arr, listReverse)
+    /* splice 删除数组 (index, num, newItem ) 第一个参数为 从index 位置开始删除 添加 ，
+    第二个参数表示 删除多少个 
+    第三个参数表示 新增加的元素 
+    返回值为 删除的元素 改变原来的数组 */
+    let newList = [{id: '88'},{id: '99'}]
+    let listSplice = arr.splice(1, 3, ...newList)
+    console.log(arr, listSplice)
+
+    /* entries 返回数组的可迭代对象 */
+     let listEntries = arr.entries()
+     console.log(arr, listEntries)
+
+     /* from 将可迭代对象 或者 具有length 属性的元素转成数组
+     类数组对象必须有length 属性 并且 该类数组对象的属性名必须为数值型 或字符串型的数字 */
+     let listFrom = Array.from(listEntries)
+     console.log(arr,'arr', listFrom,'listFromlistFrom')
+
+     /* fill 填充数组元素 （item, start, end） 改变原来的数组*/
+    /*  let listFill = arr.fill('11')
+     console.log(arr, listFill) */
+
+     /* keys  */
+     let listKeys = arr.keys()
+     console.log(arr, listKeys, Array.from(listKeys))
+
+     /* indexOf */
+     let listIndexOf = arr.indexOf('9')
+     console.log(arr, listIndexOf)
+
+
+     /* entries 返回可迭代数组对象 [key, value] 
+     keys 返回可迭代数组对象的key 
+    values 返回可迭代数组对象的 value 
+    都可以用 for...of 循环遍历  也可以手动调用遍历器对象的next方法*/
+    let keys = arr.keys()
+    let values = arr.values()
+    let oItems = arr.entries()
+    let leg = Array.from(oItems)
+    console.log(leg,'lg')
+    console.log(oItems,'oItems-11', Array.from(oItems),'oItems',Array.from(oItems).length)
+
+    // for (const key of keys) {
+    //   console.log(key,'key',keys)
+    // }
+    // for (const value of values) {
+    //   console.log(value, 'value', values)
+    // }
+    // for (const [key, value] of oItems) {
+    //   console.log(key, value, oItems,'99')
+    // }
+    for (let index = 0; index < leg.length; index++) {
+      const element = leg[index];
+      console.log(element,'element')
+      
+    }
+
+  </script>
+
+</body>
+
+</html>

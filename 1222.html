@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1851531_aeuqsl1erk.css">
   <title>每行N列 每列间距xpx （20px）通用写法 两边间距一定要大于等于中间列没项间距</title>
   <style>
     body {
@@ -18,7 +19,7 @@
       list-style: none;
     }
     .box {
-      padding: 16px 32px 16px calc(32px - 20px );
+      padding: 16px calc(32px - 20px) 16px 32px;
       overflow: hidden;
     }
     ul>li{
@@ -27,12 +28,18 @@
       margin-bottom: 12px;
       width: 100%;
       float: left;
-      margin-left: 20px;
+      margin-right: 20px;
       width: calc(100%/3 - 20px);
+    }
+    i {
+      height: 20px;
+      width: 20px;
+      color: red;
     }
   </style>
 </head>
 <body>
+  <i class="iconfont iconclose1"></i>
     <ul class="box">
       <li>1</li>
       <li>2</li>

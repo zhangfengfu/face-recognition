@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>递归树 pc侧边栏菜单</title>
+  <script src="menu.js" type="text/javascript"></script>
+  
+</head>
+
+<body>
+  <script>
+    function fn (route) {
+      let menusTitles = menu.map(v=>v.menuName)
+      let list = []
+      // 处理树数据
+      function dealList(data) {
+        let result = []
+        data.map(item => {
+          if (menusTitles.includes(item.meta.title)) {
+            let v = {
+              ...item,
+              // children: []
+            }
+            result.push(v)
+            if (Object.prototype.hasOwnProperty.call(item, 'children')) {
+              v.children = dealList(item.children)
+            }
+          }
+        })
+        return result
+      }
+  
+      list = dealList(route)
+      return list
+      // console.log(list, 'list')
+
+    }
+    console.log(fn (route))
+    
+  </script>
+  
+</body>
+
+</html>

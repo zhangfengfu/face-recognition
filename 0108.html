@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataURL file Blob canvas 相互转化</title>
+</head>
+<body>
+  <div>123</div>
+  <script>
+    let canvas = document.createElement('canvas')
+    let ctx = canvas.getContext('2d')
+    ctx.beginPath()
+    ctx.moveTo(10,10)
+    ctx.lineTo(20,10)
+    ctx.lineTo(15,15)
+    ctx.lineTo(10,10)
+    ctx.fillStyle = '#000'
+    ctx.closePath()
+    ctx.fill()
+    document.querySelector('body').appendChild(canvas)
+
+    let imgSrc = canvas.toDataURL('image/jpg', 0.8)
+    let img = document.createElement('img')
+    img.src = imgSrc
+    document.querySelector('body').appendChild(img)
+  </script>
+</body>
+</html>

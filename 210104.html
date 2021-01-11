@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1851531_aeuqsl1erk.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 2000px;
+      width: 120%;
+    }
+    li {
+      list-style: none;
+      display: block;
+      padding: 6px 8px;
+      border-radius: 4px;
+      position: relative;
+      background: rgb(223, 217, 217);
+      pointer-events: none;
+      
+    }
+    li:not(last-child) {
+      margin-bottom: 6px;
+    }
+    li:hover {
+      background-color: rgb(0, 0, 0,0.5);
+      box-shadow: 0 2px 6px #333;
+    }
+    
+    li::after {
+      content: '\e725';
+      font-family: "iconfont" !important;
+      color: rgb(163, 40, 40);
+      right: 0;
+      top: 0;
+      position: absolute;
+      pointer-events: auto;
+    }
+    ul {
+      padding: 12px 8px;
+      border-radius: 4px;
+      width: 300px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px #000;
+    }
+    .box {
+      width: 400px;
+      background-color: #e7e7e7;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .input-wraper {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 300px;
+      margin-bottom: 12px;
+    }
+    .input-wraper input {
+      flex: 1;
+      height: 40px;
+      border-radius: 4px;
+      outline: none;
+      padding: 0 12px;
+      font-size: 14px;
+      color: #333;
+      border: none;
+      margin-right: 12px;
+      transition: all .5s;
+    }
+    .input-wraper input:hover {
+      box-shadow: 0 2px 4px #333;
+    }
+    .input-wraper button {
+      height: 40px;
+      border-radius: 4px;
+      outline: none;
+      padding: 12px;
+      border: none;
+      color: #fff;
+      background-color: rgb(9, 133, 248);
+    }
+    .input-wraper button:hover {
+      background-color: rgb(2, 79, 151);
+    }
+    .input-wraper button:visited {
+      background-color: rgb(2, 79, 151);
+    }
+      
+
+
+  </style>
+</head>
+<body>
+ <div class="box">
+   <div class="input-wraper">
+    <input type="text" @input="changeInput">
+    <button class="search">search</button>
+    <button class="add">add</button>
+   </div>
+   <ul class="list">
+   </ul>
+ </div>
+
+ <script>
+   let input = document.querySelector('input')
+   let addBtn = document.querySelector('.add')
+   let searchBtn = document.querySelector('.search')
+   let list = document.querySelector('.list')
+   let originList = []
+   addBtn.addEventListener('click', function (e) {
+     let value = input.value
+     let createLi = document.createElement('li')
+     createLi.innerHTML = value
+     list.appendChild(createLi)
+   })
+   searchBtn.addEventListener('click', function (e) {
+     let value = input.value
+     originList = document.querySelectorAll('li') || []
+     let searchList = Array.from(originList).filter(v=>v.innerHTML.includes(value))
+     list.innerHTML = ''
+     searchList.map(v=>{
+      list.appendChild(v)
+     })
+   })
+   list.addEventListener('click', function (e) {
+     console.log(e)
+     if (e.target.className !== 'list') {
+       e.target.remove()
+
+    }
+   }, true)
+ </script>
+  
+</body>
+</html>

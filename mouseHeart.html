@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0%;
+      margin: 0;
+    }
+    
+    html,body {
+      height: 100%;
+      width: 100%;
+      background: #f3f3f3;
+    }
+    span {
+      height: 100px;
+      width: 100px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      animation: mymove 2000 linear infinite;
+      background-image: url('./fox.jpg');
+      background-size: cover;
+    }
+    @keyframes mymove {
+      0% {
+        transform: translate(-50%, -50%);
+        filter: hue-rotate(0deg);
+        opacity: 1;
+      }
+      0% {
+        transform: translate(-50%, -1000%);
+        filter: hue-rotate(360deg);
+
+        opacity: 0;
+      }
+    }
+    .box {
+      height: 400px;
+      width: 400px;
+      background-color: burlywood;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="box">
+    11222
+  </div>
+  <script>
+    document.addEventListener('mousemove', (e)=>{
+      let body = document.querySelector('body')
+      let heart = document.createElement('span')
+      let x = e.offsetX
+      let y = e.offsetY
+
+      heart.style.left = x + 'px'
+      heart.style.top = y + 'px'
+      let size = Math.random() * 100 + 'px'
+      heart.style.width = size
+      heart.style.height = size
+      body.appendChild(heart)
+      setTimeout(() => {
+        heart.remove()
+      }, 2000);
+    })
+  </script>
+</body>
+</html>

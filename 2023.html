@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自适应两栏布局</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    body, html {
+      background: purple;
+      height: 100%;
+    }
+    .left {
+      float: left;
+      width: 150px;
+      height: 300px;
+      background: salmon;
+    }
+    .right {
+      background: pink;
+      height: 500px;
+      overflow: hidden;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="left">1</div>
+  <div class="right">2</div>
+  
+</body>
+<script>
+  let p1 = new Promise((resolve, reject)=>{
+    console.log(123)
+    resolve('p1')
+  })
+  
+  let p2 = new Promise((resolve, reject)=>{
+    resolve('p2')
+  })
+  
+  // Promise.all([p1, p2]).then((res)=>{
+  //   console.log(res,'res')
+  // })
+  function api () {
+    return new Promise((reslove, reject)=>{
+      reslove('test')
+    })
+  }
+  function test () {
+    return api()
+  }
+
+  async function fn  () {
+   const res = await test()
+   console.log(res,'res')
+  }
+  fn()
+
+  function load () {
+    let IMg = new Image()
+    IMg.src = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg'
+    document.querySelector('body').appendChild(IMg)
+    IMg.addEventListener('load', function (res) {
+      console.log(res,'res22')
+    })
+  }
+  load()
+
+  
+</script>
+</html>

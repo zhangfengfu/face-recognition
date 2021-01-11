@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bubble</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0
+    }
+    html, body{
+      width: 100%;
+      height: 100%;
+    }
+    section {
+      width: 100%;
+      height: 100%;
+      background-color: #111;
+      display: flex;
+      color: #ffffff;
+      font-size: 150px;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    h2 {
+      color: #333;
+    }
+    body span {
+      border-radius: 50%;
+      position: absolute;
+      background-color: transparent;
+      bottom: -50px;
+      animation: myMove 4s linear infinite;
+      box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.25);
+    }
+    body span::before {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(#fff, transparent);
+      border-radius: 50%;
+      content: '';
+      transform: scale(0.25) translate(-70%, -70%);
+      position: absolute;
+    }
+    @keyframes myMove {
+      0% {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-1200px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <h2>bubble</h2>
+  </section>
+  <script>
+    let body = document.querySelector('section')
+
+    function createBubble (num) {
+      let createBubble = document.createElement('span')
+      let size = Math.random() * 60
+      createBubble.style.width = size + 'px'
+      createBubble.style.height = size + 'px'
+      createBubble.style.left = innerWidth*Math.random() + 'px'
+
+      body.appendChild(createBubble)
+      setTimeout(() => {
+        createBubble.remove()
+      }, 4000);
+    }
+
+    setInterval(() => {
+      createBubble() 
+    }, 50);
+  </script>
+</body>
+</html>

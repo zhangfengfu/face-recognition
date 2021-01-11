@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+</head>
+<body>
+  <input type="file" id="file" name="file" >
+<br/>
+  <script>
+//     img = new Image();
+// img.src = URL.createObjectURL()
+// img.onload = function(){
+//     console.log(img.naturalWidth || img.width)
+// }
+document.querySelector('#file').addEventListener('change', function(e){
+  console.log(e.target.files[0],e,'eee')
+  let box = document.createElement('div')
+  let obj = e.target.files[0]
+  var formData = new FormData();
+  formData.append("File", obj);
+  formData.append("FileName", e.target.files[0].name);
+
+
+  document.querySelector('body').appendChild(box)
+})
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用formData 上传文件 || form表单下载文件</title>
+</head>
+
+<body>
+  <div>123</div>
+  <input type="file">
+  <script>
+    var file = document.querySelector('[type=file]');
+
+    // 通过FormData将文件转成二进制数据
+
+    var formData = new FormData();
+
+    // 将文件转二进制
+    // upload 相当于表单中的一个key 可以根据需要随便定义 比如： files videos等
+    // FormData 的方法
+    /* append: ƒ append()
+    delete: ƒ delete()
+    entries: ƒ entries()
+    forEach: ƒ forEach()
+    get: ƒ ()
+    getAll: ƒ getAll()
+    has: ƒ has()
+    keys: ƒ keys()
+    set: ƒ ()
+    values: ƒ values() */
+    formData.append('upload', file.files[0]);
+    formData.append('user', 'user');
+    var xhr = new XMLHttpRequest;
+    xhr.open('post', 'file.php');
+    // 监听上传进度
+    xhr.upload.onprogress = function (ev) {
+      // 事件对象
+      // console.log(ev);
+
+      var percent = (ev.loaded / ev.total) * 100 + '%';
+
+      console.log(percent);
+
+      progress.style.width = percent;
+    }
+
+    xhr.send(formData);
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        //
+      }
+    }
+
+    let winDownload = (url, params) => {
+      params = {
+        ...params,
+        token: session.getSession('token'),
+        corpId: session.getSession('corpId')
+      }
+      const form = document.createElement('form')
+      form.id = 'form'
+      form.name = 'form'
+      document.body.appendChild(form)
+
+      Object.keys(params).forEach(key => {
+        if (params[key] === undefined) return
+        const input = document.createElement('input')
+        input.type = 'hidden'
+        input.name = key
+        input.value = params[key]
+        form.appendChild(input)
+      })
+      form.method = 'GET'
+      form.action = url
+      form.submit()
+      document.body.removeChild(form)
+    }
+  </script>
+
+</body>
+
+</html>
