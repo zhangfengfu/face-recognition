@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+*{margin:0; padding:0;}
+
+</style>
+</head>
+<body>
+<input type="button" name="" value="传统运算">
+<div id="box1"></div>
+<input type="button" name="" value="worker运算">
+<div id="box2"></div>
+</body>
+<script>
+	var btns=document.getElementsByTagName('input');
+	var box1=document.getElementById('box1');
+	var box2=document.getElementById('box2');
+	btns[0].onclick=function (){
+		console.time('执行时间');
+		var a=0;
+		for (var i = 0; i < 90000001; i++) {
+			a+=Math.sqrt(i);
+		};
+		box1.innerHTML=a;
+		console.timeEnd('执行时间');
+	}
+	
+	var worker=new Worker('test2.js');//创建worker对象
+	btns[1].onclick=function (){
+		worker.postMessage('sum');//页面向worker发送数据
+	}
+	worker.onmessage=function (ev){
+		var e=ev||window.event;
+		box2.innerHTML=e.data;//接收worker发送来的数据
+	}
+
+</script>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="menu.js" type="text/javascript"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+
+    .box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+
+    .left {
+      width: 200px;
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+    }
+
+    .right div:nth-child(2) {
+      background-color: blue;
+      flex: 1;
+    }
+
+    .right div:nth-child(odd) {
+      height: 200px;
+      background: salmon;
+    }
+    .client {
+      height: 1000px;
+      width: 1000px;
+      border: 2px solid red;
+      padding: 10px;
+      margin: 10px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <a href="https://baidu.com" name="link">link</a>
+  
+  <div class="client"></div>
+  <script>
+    let childNodes = document.querySelector('body').childNodes
+    let children = document.querySelector('body').children
+    console.log(childNodes, children)
+    /* instanceof 用以检查构造函数的 prototype 是否在某个实例的原型链上 */
+
+    /* 用法 */
+    let str = '22'
+    let num = 22
+    let arr = [1, 2, 4]
+    let obj = {
+      name: 1
+    }
+    let fn = function () {}
+    // console.log(str instanceof String)
+    // console.log(num instanceof Object)
+    // console.log(arr instanceof Array)
+    // console.log(obj instanceof Object)
+    // console.log(fn instanceof Function)
+
+    function instance_of(L, R) {
+      if (L == null) {
+        return false
+      }
+      if (L.__proto__ == R.prototype) {
+        return true
+      }
+    }
+    console.log(instance_of(obj, Object))
+    /* 实现sum(9)(3) = 12 */
+
+    function add(n) {
+      var fn = function (m) {
+        return add(n + m);
+      };
+
+      fn.valueOf = function () {
+        console.log(n);
+        return n; //valueOf返回函数本身
+      };
+
+      fn.toString = function () {
+        console.log(n);
+        return '' + n; //返回相应的字符串
+      };
+
+      return fn;
+    }
+    console.log(add(1)(2)(3)); //6
+  </script>
+</body>
+
+</html>

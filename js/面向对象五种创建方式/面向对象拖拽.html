@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>面向对象拖拽</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+*{margin:0; padding: 0;}
+.box{width: 200px; height: 200px; background:red; position: absolute; cursor: move;}
+</style>
+</head>
+<body>
+    <div id="box1" class="box"></div>
+    <div id="box2" class="box"></div>
+    <div id="box3" class="box"></div>
+    <div id="box4" class="box"></div>
+</body>
+<script>
+//面向过程
+/*var box=document.getElementById('box1');
+box.onmousedown=function (ev){
+	var event=ev||window.event;
+	if (event.preventDefault) {
+    	event.preventDefault();
+    } else{
+    	event.returnValue=false;
+    };
+    var sb_bkx=event.clientX-box.offsetLeft;
+    var sb_bky=event.clientY-box.offsetTop;
+    document.onmousemove=function (ev){
+    	var event=ev||window.event;
+    	var left=event.clientX-sb_bkx;
+    	var top=event.clientY-sb_bky;
+    	var maxX=document.documentElement.clientWidth-box.offsetWidth;
+    	var maxY=document.documentElement.clientHeight-box.offsetHeight;
+    	if (left<=0) {
+    		left=0;
+    	}else if(left>=maxX){
+    		left=maxX;
+    	}
+    	if (top<=0) {
+    		top=0;
+    	}else if(top>=maxY){
+    		top=maxY;
+    	}
+    	box.style.left=left+'px';
+    	box.style.top=top+'px';
+    }
+    document.onmouseup=function (){
+        document.onmousemove=null;
+        document.onmouseup=null;
+    }
+}*/
+
+
+//面向对象
+function CreateDrag(targetID){
+    this.box=document.getElementById(targetID);
+    var _this=this;
+    this.box.onmousedown=function (){
+        _this.fnDown();
+    }
+}
+CreateDrag.prototype.fnDown=function (ev){
+    var event=ev||window.event;
+    if (event.preventDefault) {
+        event.preventDefault();
+    } else{
+        event.returnValue=false;
+    };
+    this.sb_bkx=event.clientX-this.box.offsetLeft;
+    this.sb_bky=event.clientY-this.box.offsetTop;
+    var _this=this;
+    document.onmousemove=function (){
+        _this.fnMove();
+    }
+    document.onmouseup=function (){
+        _this.fnUp();
+    }
+}
+CreateDrag.prototype.fnMove=function (ev){
+    var event=ev||window.event;
+    if (event.preventDefault) {
+        event.preventDefault();
+    } else{
+        event.returnValue=false;
+    };
+    var left=event.clientX-this.sb_bkx;
+    var top=event.clientY-this.sb_bky;
+    var maxX=document.documentElement.clientWidth-this.box.offsetWidth;
+    var maxY=document.documentElement.clientHeight-this.box.offsetHeight;
+    if (left<0) {
+        left=0;
+    } else if(left>maxX) {
+        left=maxX;
+    };
+    if (top<0) {
+        top=0;
+    } else if(top>maxY) {
+        top=maxY;
+    };
+    this.box.style.left=left+'px';
+    this.box.style.top=top+'px';
+}
+CreateDrag.prototype.fnUp=function (){
+    document.onmousemove=null;
+    document.onmouseup=null;
+}
+var Drag1=new CreateDrag('box1');
+var Drag2=new CreateDrag('box2');
+var Drag3=new CreateDrag('box3');
+var Drag4=new CreateDrag('box4');
+</script>
+</html>

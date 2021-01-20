@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<script type="text/javascript" src="test.js"></script>
+</head>
+<body>
+	
+</body>
+<script>
+	var ww = new Worker('test.js');
+	ww.postMessage('hello girls');
+	ww.addEventListener('message',function(e){
+	     alert(e.data); //弹出worker返回的数据
+	},false);
+
+</script>
+</html>

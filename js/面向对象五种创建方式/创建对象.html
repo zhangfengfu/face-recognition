@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+	
+</body>
+<script>
+//内置函数创建对象--------------------
+/*var arr=new Array('a','b','c');
+var arr=['a','b','c'];
+
+var str=new String('abc');
+var str='abc';
+
+var obj=new Object();
+var obj={};
+
+var fun=new Function("alert('123')");
+var fun=function (){alert('123')};
+
+
+var arr=new Array('a','c');
+var arr=['a','c'];// 创建数组
+
+var str=new String('aaa');
+var str=('aaa');//创建字符串
+
+var fun=new Function("alert('aaa')");
+var fun=function(){alert('aaa')};//创建函数
+
+var obj=new Object();
+var obj={};//创建对象
+*/
+
+//自定义对象-------------------------------
+
+//1.直接给对象扩充属性和方法(对象字面量)
+// var Madecar={//对象字面量
+// 	color:'red',//属性
+// 	name:'BMW-X7',//属性
+// 	speed:'350',//属性
+// 	run:function (){//方法
+// 		console.log('最高时速是：'+Madecar.speed);
+// 	}
+// }
+// alert(Madecar.color);
+// Madecar.run();
+
+/*var Madecar=new Object();
+Madecar.color='green';
+Madecar.name='BMW-X1';
+Madecar.speed='220';
+Madecar.run=function (){
+	console.log('最高时速是：'+Madecar.speed);
+}
+alert(Madecar.color);
+Madecar.run();*/
+
+
+//直接给对象扩充属性和方法
+/*var car={
+	color:'black',
+	name:'aaaa',
+	speed:'100',
+	run :function(){
+		console.log(car.speed);
+	}
+}
+alert(car.name);
+car.run();*/
+
+var car=new Object();
+car.color='yellow';
+car.name='fff';
+car.run=function(){
+	console.log(car.name);
+}
+alert(car.color);
+car.run();
+
+// 2.工厂方式
+/*function Madecar(col,nam,spe){//原料col,nam,spe
+	var obj=new Object();//加工
+	obj.color=col;//加工
+	obj.name=nam;//加工
+	obj.speed=spe;//加工
+	obj.run=function (){//加工
+		console.log('最高时速是：'+obj.speed);
+	}
+	return obj;//出厂
+}
+var car1=Madecar('red','BMW-X8','400');
+var car2=Madecar('green','BMW-X6','350');
+var car3=Madecar('bule','BMW-X5','300');
+console.log(car1.color);
+console.log(car2.color);
+car1.run();
+car2.run();
+alert(car1.run==car2.run);//false*/
+//工厂方式缺点:每新建一个对象，其方法都是不一样的，资源浪费，影响性能
+
+//工厂方式
+// function car(nam,col,spe){
+// 	var obj=new Object();
+// 	obj.name=nam;
+// 	obj.color=col;
+// 	obj.speed=spe;
+// 	obj.run=function () {
+// 		console.log(obj.color);
+// 	}
+// 	return obj;
+// }
+
+//3.构造函数方式
+/*function Madecar(col,nam,spe){//构造函数
+	this.color=col;
+	this.name=nam;
+	this.speed=spe;
+	this.run=function (){
+		console.log('最高时速是：'+this.speed);
+	}
+}
+var car1=new Madecar('green','BMW-X3','340');//新建实例对象
+var car2=new Madecar('red','BMW-X4','360');//新建实例对象
+console.log(car1.color);
+console.log(car2.color);
+car1.run();
+car2.run();
+alert(car1.run==car2.run);//false*/
+//构造函数方式缺点:每新建一个对象，其方法都是不一样的，资源浪费，影响性能
+
+//4.原型(prototype)方式
+/*function Madecar(){}
+Madecar.prototype.color='red';
+Madecar.prototype.name='BMW-X4';
+Madecar.prototype.speed='350';
+Madecar.prototype.run=function (){
+	console.log('最高时速是：'+this.speed);
+}
+var car1=new Madecar();//对象实例
+var car2=new Madecar();//对象实例
+var car3=new Madecar();//对象实例
+console.log(car1.color);
+console.log(car2.color);
+console.log(car3.color);
+alert(car1.run==car2.run);//true*/
+//原型方式：优点是属性和方法都共享，缺点是属性无法区别
+
+// 5.混合方式（构造函数和原型）
+function Madecar(col,nam,spe){
+	this.color=col;
+	this.name=nam;
+	this.speed=spe;
+}
+Madecar.prototype.run=function (){
+	console.log('最高时速是：'+this.speed);
+}
+var car1=new Madecar('red','BMW-X1','230');
+var car2=new Madecar('green','BMW-X2','260');
+var car3=new Madecar('blue','BMW-X3','320');
+console.log(car1.color);
+console.log(car2.color);
+console.log(car3.color);
+alert(car1.run==car2.run);//true
+// 混合方式：既可以区别属性，又能共享方法
+</script>
+</html>

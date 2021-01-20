@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#out{
+		width: 200px;
+		height: 200px;
+		overflow: hidden;
+		border: 1px solid #000;
+		position: relative;
+	}
+	.file{
+		width: 200px;
+		height: 200px;
+		position: absolute;
+		z-index: 999;
+		opacity: 0;
+	}
+	
+	.img{
+		width: 200px;
+		height: 200px;
+		position: absolute;
+	}
+	img{
+		width: 200px;
+		height: 200px;
+	}
+	
+	#inner{
+		width: 800px;
+		height: 200px;
+		border: 1px solid red;
+		margin-top: 20px;
+	}
+</style>
+</head>
+<body>
+
+	<div id="out">
+		<input type="file" class="file"/>
+		<img src="img/b86ba8f34363ed654e0011ca8cb077da.jpg" class="img"/>
+	</div>
+	
+	<div id="inner"></div>
+
+		<input type="file">
+
+</body>
+<script type="text/javascript">
+	var blob, arr=[];
+	$('input').on('change',function(e){
+	var tar = this,
+		files = tar.files,
+		fNum = files.length,
+		URL = window.URL || window.webkitURL;
+	if(!files[0])return;
+	
+	for(var i=0;i<fNum;i++){
+		if(files[i].type.search(/image/)>=0){
+			blob = URL.createObjectURL(files[i]);
+
+				arr.push(blob)
+			
+		}
+	}
+	console.log(arr,'arr')
+	for (var i=0;i<arr.length;i++) {
+	var newImg = new Image();
+	newImg.onload = function(){
+		$('#inner').append(newImg);
+	};
+	newImg.src =arr[i];
+}
+	
+});
+
+
+
+
+
+</script>
+</html>

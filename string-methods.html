@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="//at.alicdn.com/t/font_2322370_nfg2xt039kd.js"></script>
+  <style>
+    .icon {
+       width: 30px;
+       height: 30px;
+       vertical-align: -0.15em;
+       fill: currentColor;
+       overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <svg class="icon" aria-hidden="true">
+      <use xlink:href="#iconshengdantubiao-02"></use>
+  </svg>
+  </div>
+  <script>
+    let str = 'this is a string demo'
+
+    /* indexOf 返回某个字符出现的位置 */
+    let strIndexOf = str.indexOf('is')
+    console.log(str, strIndexOf)
+    /* slice 截取一段字符 */
+    let strSlice = str.slice(-1)
+    console.log('slice', strSlice)
+    /* subStr */
+    let strSubStr = str.substr(-1)
+    console.log('subStr', strSubStr)
+
+
+    /* search match  replace */
+    /* includes 是否包含某个字符 */
+    let strIncludes = str.includes('a')
+    console.log('includes', strIncludes)
+    /* split 将字符串分割为数组*/
+    let strSplit = str.split(' ')
+    console.log('split', strSplit)
+    /* trim 去除字符串两边的空白 */
+    let strTrim = str.trim()
+    console.log('trim', strTrim)
+
+    /* toLowerCase toUpperCase */
+    let strToUpperCase = str.toUpperCase()
+    console.log('toUpperCase', strToUpperCase)
+    let strToLowerCase = str.toLowerCase()
+    console.log('toLowerCase', strToLowerCase)
+    /* startsWith 检查字符串是否以某个子字符串开头*/
+    let strStartsWith = str.startsWith("this")
+    console.log('startsWith', strStartsWith)
+  </script>
+</body>
+</html>

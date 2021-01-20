@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" href="reset.css">
+<style>
+#out{width:670px;height:240px;overflow:hidden;border:1px solid red;position:relative;margin:20px auto;}	
+#inner{width:670px;height:240px;overflow:hidden;position:relative;}
+#inner img{width:670px;height:240px;position:absolute;left:0;top:0;opacity:0;}
+#zuo{width:25px;height:25px;position:absolute;left:5px;top: 100px;background:url(fx1.png) 0 0 no-repeat;cursor:pointer;}
+#you{width:25px;height:25px;position:absolute;right:5px;top: 100px;background:url(fx2.png) 0 0 no-repeat;cursor:pointer;}
+#list{width:200px;overflow:hidden;line-height:30px;position:absolute;bottom:5px;left:235px;}
+#list li{width:30px;background:#ccc;text-align:center;margin-left:10px;float:left;cursor:pointer;}
+#inner .show{opacity:1;}
+#list .sec{background:#fff;color:red;}
+</style>
+</head>
+<body>
+	<div id="out">
+		<div id="inner">
+			<img src="1.jpg" alt="" class="show">
+			<img src="2.jpg" alt="">
+			<img src="3.jpg" alt="">
+			<img src="4.jpg" alt="">
+			<img src="5.jpg" alt="">
+		</div>
+		<p id="zuo"></p>
+		<p id="you"></p>
+		<ul id="list">
+			<li class="sec">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+</body>
+<script>
+var inner=document.getElementById('inner');
+var zuo=document.getElementById('zuo');
+var you=document.getElementById('you');
+var list=document.getElementById('list');
+var imgs=inner.getElementsByTagName('img');
+var lis=list.getElementsByTagName('li');
+var x=0,timer1=null,timer2=null;
+function run(){
+	timer1=setInterval(function(){
+		x++;
+		if (x>=imgs.length) {
+			x=0;
+		};
+		move();
+	},2000)
+}
+run();
+function move(){//图片本身的变化
+	clearInterval(timer2);
+	for (var i = 0; i < lis.length; i++) {
+		lis[i].className='';
+		imgs[i].style.opacity=0;
+	};
+	lis[x].className='sec';
+	var op=0;
+	timer2=setInterval(function(){
+		op+=0.02;
+		if (op>=1) {
+			op=1;
+			clearInterval(timer2);
+		};
+		imgs[x].style.opacity=op;
+	},30)
+}
+zuo.onclick=function(){
+	clearInterval(timer1);
+	x++;
+		if (x>=imgs.length) {
+			x=0;
+		};
+	move();
+	run();
+}
+you.onclick=function(){
+	clearInterval(timer1);
+	x--;
+	if (x<0) {
+		x=imgs.length-1;
+	};
+	move();
+	run();
+}
+for (var i = 0; i < lis.length; i++) {
+	lis[i].onclick=function(){
+		clearInterval(timer1);
+		for (var i = 0; i < lis.length; i++) {
+			if (lis[i]==this) {
+				x=i;
+				move();
+				run();
+			};
+		};
+	}
+};
+</script>
+</html>

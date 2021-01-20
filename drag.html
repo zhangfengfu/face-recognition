@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>推拽</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+
+    .box {
+      height: 100px;
+      width: 100px;
+      background-color: coral;
+      position: absolute;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script>
+    let box = document.querySelector('.box')
+
+
+    // box.addEventListener('mousedown', function (e) {
+
+    //   let ox = e.clientX -  box.offsetLeft
+    //   let oY = e.clientY -  box.offsetTop
+
+    //   document.addEventListener('mousemove', function (e) {
+    //     box.style.left = e.clientX - ox + 'px'
+    //     box.style.top = e.clientX - oY + 'px'
+    //     document.addEventListener('mouseup', function (e) {
+    //       document.removeEventListener('mousemove')
+    //     })
+    //   })
+
+    // })
+
+    box.onmousedown = function (e) {
+      let ox = e.clientX - box.offsetLeft
+      let oy = e.clientY - box.offsetTop
+
+      document.onmousemove = function (ev) {
+        var e = ev
+        let ex = e.clientX - ox
+        let ey = e.clientY - oy
+
+        box.style.left = ex + 'px'
+        box.style.top = ey + 'px'
+
+        document.onmouseup = function (e) {
+          document.onmousemove = null
+        }
+      }
+    }
+    
+  </script>
+</body>
+
+</html>
